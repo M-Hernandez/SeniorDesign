@@ -1,0 +1,41 @@
+esphome:
+  name: lightdimmer2
+  platform: ESP8266
+  board: nodemcuv2
+
+wifi:
+  ssid: "Wifi"
+  password:
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Lightdimmer2 Fallback Hotspot"
+    password: "3A3adWXeEe8w"
+
+captive_portal:
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+# Example configuration entry
+light:
+  - platform: monochromatic
+    output: dimmer1
+    name: Dimmerized Light
+    
+output:
+  - platform: ac_dimmer
+    id: dimmer1
+    gate_pin: D6
+    method: leading
+    init_with_half_cycle: True
+    zero_cross_pin:
+      number: D2
+      mode: INPUT
+      inverted: yes
+    min_power: 0.33
+    max_power: 1
