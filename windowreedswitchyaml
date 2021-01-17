@@ -1,0 +1,31 @@
+esphome:
+  name: windowswitch
+  platform: ESP8266
+  board: nodemcuv2
+
+wifi:
+  ssid: "Wifi"
+  password: "Wordbird"
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Windowswitch Fallback Hotspot"
+    password: "QpEj7luIXQTq"
+
+captive_portal:
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: D2
+      inverted: true
+      mode: INPUT_PULLUP
+    name: "Kitchen Window"
+    device_class: window
