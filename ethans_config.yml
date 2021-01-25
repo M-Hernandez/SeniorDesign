@@ -1,0 +1,42 @@
+
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+
+http:
+ base_url: https://eoha.duckdns.org
+ ssl_certificate: /ssl/fullchain.pem
+ ssl_key: /ssl/privkey.pem
+    
+sensor:
+  platform: mqtt
+  name: bedroom temperature
+  state_topic: "sensor/temperature"
+  qos: 0
+  unit_of_measurement: "ºF"
+
+sensor 2:
+  platform: mqtt
+  name: bedroom humidity
+  state_topic: "sensor/humidity"
+  qos: 0
+  unit_of_measurement: "%"
+  
+switch:
+  - platform: mqtt
+    name: light
+    state_topic: "esp/test"
+    command_topic: "esp/test"
+    payload_on: "#on"
+    payload_off: "#off"
+  
+alexa:
+  smart_home:
