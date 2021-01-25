@@ -5,7 +5,7 @@ esphome:
 
 wifi:
   ssid: "Wifi"
-  password: "Wordbird"
+  password: ""
 
   # Enable fallback hotspot (captive portal) in case wifi connection fails
   ap:
